@@ -1,5 +1,3 @@
-# thanks to errichto: https://github.com/Errichto/youtube/blob/master/testing/s.sh
-
 echo "Kindly enter the problem name you want to stress test"
 read problemName
 set -e
@@ -12,6 +10,9 @@ do
     ./generator $i > input
     ./$problemName < input > output
     ./bruteForce < input > correctAnswer
-    ./checker > checker_log
+	# if there exists multiple answers, use checker
+    # ./checker > checker_log
+	# else use
+	# diff output correctAnswer > /dev/null || break
     echo "Passed test: "  $i
 done
